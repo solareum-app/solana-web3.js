@@ -36,7 +36,9 @@ export class AgentManager {
     this._activeRequests--;
     if (this._activeRequests === 0 && this._destroyTimeout === null) {
       this._destroyTimeout = setTimeout(() => {
-        this._agent.destroy();
+        // since http/https is not available on react-native env
+        // so this is a temporarily fix 
+        this._agent && this._agent.destroy && this._agent.destroy(); 
         this._agent = AgentManager._newAgent(this._useHttps);
       }, DESTROY_TIMEOUT_MS);
     }

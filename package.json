@@ -1,5 +1,5 @@
 {
-  "name": "@solana/web3.js",
+  "name": "@solareum/solana-web3.js",
   "version": "0.0.0-development",
   "description": "Solana Javascript API",
   "keywords": [
@@ -37,7 +37,7 @@
     "/src"
   ],
   "scripts": {
-    "build": "npm run clean; cross-env NODE_ENV=production rollup -c; npm run type:gen; npm run flow:gen; npm run flow:check",
+    "build": "npm run clean; cross-env NODE_ENV=production rollup -c",
     "build:browser-test": "rollup -c test/rollup.config.js",
     "build:fixtures": "set -ex; ./test/fixtures/noop-program/build.sh",
     "clean": "rimraf ./coverage ./lib",
@@ -59,7 +59,8 @@
     "test:browser-with-server": "start-server-and-test 'http-server -p 8080' 8080 test:browser",
     "test:browser-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://localhost:8899/health test:browser-with-server",
     "test:live": "TEST_LIVE=1 npm run test",
-    "test:live-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://localhost:8899/health test:live"
+    "test:live-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://localhost:8899/health test:live",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
