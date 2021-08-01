@@ -1,4 +1,3 @@
-import invariant from 'assert';
 import nacl from 'tweetnacl';
 import bs58 from 'bs58';
 import {Buffer} from 'buffer';
@@ -7,6 +6,7 @@ import {Message} from './message';
 import {PublicKey} from './publickey';
 import * as shortvec from './util/shortvec-encoding';
 import {toBuffer} from './util/to-buffer';
+import invariant from './util/assert';
 import type {Signer} from './keypair';
 import type {Blockhash} from './blockhash';
 import type {CompiledInstruction} from './message';
@@ -214,7 +214,7 @@ export class Transaction {
     }
 
     if (this.instructions.length < 1) {
-      throw new Error('No instructions provided');
+      console.warn('No instructions provided');
     }
 
     let feePayer: PublicKey;
